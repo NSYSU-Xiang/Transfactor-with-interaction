@@ -482,21 +482,3 @@ if __name__ == '__main__':
 	print(f1_score(y_true=y_test, y_pred=y_pred))
 	confusion_matrix(y_true=y_test, y_pred=y_pred)
 	Confusion_Plot()._test_data_class(y_true=y_test, y_pred=y_pred)
-
-	y_real = []
-	y_proba = []
-	aucs = []
-	i = 0
-	plt.figure()
-	for i in [y_prob_1, y_prob_2, y_prob_3]:
-		precision, recall, thresholds = precision_recall_curve(y_test, i[:, 1])
-		roc_auc = auc(recall, precision)
-		lab = 'Stacking Pre-Recall (AUC-PR = %0.4f)' % (roc_auc)
-		plt.plot(recall, precision, lw=2, label=lab, alpha=0.6)
-	plt.xlim([0.02, 0.99])
-	plt.ylim([0, 1.05])
-	plt.grid(True)
-	plt.xlabel('Recall', fontsize=20)
-	plt.ylabel('Precision', fontsize=20)
-	plt.title('Stacking PR space with', fontsize=20)
-	plt.legend(loc="lower left", fontsize=10)
